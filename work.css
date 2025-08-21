@@ -1,0 +1,93 @@
+:root {
+    color-scheme: light;
+    --bg-warm: #efeee9;
+    /* warm grey */
+    --text-deep: #2c2a64;
+    /* dark purple/blue */
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-warm);
+    color: var(--text-deep);
+    font-family: "Iowan Old Style", IowanOldStyle, "Hoefler Text", "Times New Roman", Times, serif;
+}
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 22px;
+    background: linear-gradient(to bottom, rgba(239, 238, 233, 0.95), rgba(239, 238, 233, 0));
+    z-index: 10; /* ensure header sits above content for clicks */
+}
+
+.brand {
+    color: var(--text-deep);
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: clamp(24px, 4.2vw, 48px);
+    cursor: pointer;
+}
+
+.brand:hover { color: #1b1a48; }
+.brand:focus-visible { outline: 2px dashed rgba(44, 42, 100, 0.5); outline-offset: 4px; }
+
+.email {
+    margin-left: 0;
+    margin-top: 12px;
+    font-size: clamp(14px, 1.3vw, 18px);
+    letter-spacing: 0.02em;
+    color: var(--text-deep);
+}
+
+.work-grid {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 16px 40px;
+    /* leave room for fixed header */
+    transform: translateY(-3vh);
+    /* slightly higher than center */
+    gap: 24px;
+    /* explicit vertical spacing */
+}
+
+.work-card {
+    display: inline-block;
+    padding: 2px 0;
+    border: none;
+    color: var(--text-deep);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    background: transparent;
+    transition: color 160ms ease, transform 120ms ease, text-decoration-color 160ms ease;
+}
+
+.work-card:hover {
+    color: #0a0926;
+    font-weight: 700;
+}
+
+.work-card:active {
+    transform: translateY(1px);
+}
+
+.work-card:focus-visible {
+    outline: 2px dashed rgba(44, 42, 100, 0.5);
+    outline-offset: 3px;
+    text-decoration: none;
+}

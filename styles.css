@@ -1,0 +1,144 @@
+/* Base reset */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.rootfix {}
+
+:root {
+    --parallax-y: 0px;
+}
+
+body {
+    margin: 0;
+    font-family: "Iowan Old Style", IowanOldStyle, "Hoefler Text", "Times New Roman", Times, serif;
+    color: #e8e8e8;
+    background: #000;
+    overflow-x: hidden;
+}
+
+/* Fullscreen background (GIF) */
+#bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#bgimg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + var(--parallax-y))) scale(1.02);
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: contrast(1.18) brightness(1.18) saturate(1.2);
+}
+
+/* Sparkle overlay canvas */
+#sparkles {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    /* still behind content but above bg */
+    transform: translateY(calc(var(--parallax-y) * 0.6));
+    will-change: transform;
+}
+
+/* Subtle dark overlay for text legibility */
+#bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        /* subtle firefly glow vignette */
+        radial-gradient(1200px 600px at 80% 5%, rgba(95, 120, 0, 0.06), transparent 60%),
+        /* soft darkening toward the lower half */
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.38) 55%, rgba(0, 0, 0, 0.52));
+}
+
+.container {
+    min-height: 100vh;
+}
+
+.hero {
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    --title-btn-gap: clamp(80px, 12vw, 260px);
+    --hero-center: 39%;
+}
+
+.title {
+    font-family: "Iowan Old Style", IowanOldStyle, "Hoefler Text", "Times New Roman", Times, serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0;
+    line-height: 1.1;
+    font-size: clamp(2.75rem, 7.2vw, 6.25rem);
+    position: absolute;
+    top: var(--hero-center);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 2.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    font-family: "Iowan Old Style", IowanOldStyle, "Hoefler Text", "Times New Roman", Times, serif;
+    color: #f3f3f3;
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+    transition: background-color 160ms ease, transform 120ms ease, border-color 160ms ease;
+    position: absolute;
+    top: calc(var(--hero-center) + var(--title-btn-gap));
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: #fff;
+}
+
+.btn:active {
+    transform: translateX(-50%);
+    /* preserve position, no jump */
+}
+
+.work {
+    height: 0;
+}
+
+/* no content yet */
+
+/* Reduce motion for users preferring it */
+@media (prefers-reduced-motion: reduce) {
+    .btn {
+        transition: none;
+    }
+}
