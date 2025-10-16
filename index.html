@@ -4,31 +4,38 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Haley Moller — Portfolio" />
-    <title>Haley Moller</title>
+    <title>Work — Haley Moller</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="work.css" />
 </head>
 
 <body>
-    <div id="bg" aria-hidden="true">
-        <img id="bgimg" src="luciolesmasterpiece.gif" alt="" />
-    </div>
-    <canvas id="sparkles" aria-hidden="true"></canvas>
 
-    <main class="container">
-        <section class="hero" aria-label="Intro">
-            <h1 class="title">Haley Moller</h1>
-            <a href="work.html" class="btn" aria-label="View work">WORK</a>
-        </section>
 
-        <section id="work" class="work" aria-label="Work"></section>
+    <main class="work-grid">
+        <div class="profile" style="grid-column: 1; justify-self: start; align-self: start;">
+            <a class="brand" href="index.html">Haley<br>Moller</a>
+            <img class="headshot" src="headshot.jpg" alt="Portrait of Haley Moller" />
+            <div class="bio">
+                <p>I’m a researcher and writer exploring how humans and intelligent systems learn. My background spans
+                    neuroscience, AI, and literature; I’ve worked in labs studying mitochondria and in startups building
+                    AI tools for education. All my work is driven by a single question: what is learning, and how can we
+                    do it well as humans in the age of artificial intelligence?</p>
+            </div>
+            <a class="work-card contact-btn" href="mailto:haleymoller@gmail.com?subject=Hello%20from%20your%20website"
+                aria-label="Contact Haley via email">Contact Me</a>
+        </div>
+        <div id="navButtons"
+            style="grid-column: 2; display: flex; flex-direction: column; align-items: center; gap: 120px; align-self: center; justify-self: center;">
+            <a class="work-card" href="projects.html" aria-label="Projects">Projects</a>
+            <a class="work-card" href="https://github.com/haleymoller" aria-label="Github">Github</a>
+            <a class="work-card" href="https://substack.com/@nervequarry" aria-label="Essays">Essays</a>
+        </div>
+
     </main>
-
-    <script src="sparkles.js"></script>
-    <script src="parallax.js"></script>
+    <script src="work.js"></script>
 </body>
 
 </html>

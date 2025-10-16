@@ -18,17 +18,9 @@ body {
     font-family: "Iowan Old Style", IowanOldStyle, "Hoefler Text", "Times New Roman", Times, serif;
 }
 
+/* header no longer used; brand is inside profile */
 .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 18px 22px;
-    background: linear-gradient(to bottom, rgba(239, 238, 233, 0.95), rgba(239, 238, 233, 0));
-    z-index: 10; /* ensure header sits above content for clicks */
+    display: none;
 }
 
 .brand {
@@ -38,31 +30,180 @@ body {
     letter-spacing: 0.02em;
     font-size: clamp(24px, 4.2vw, 48px);
     cursor: pointer;
+    display: block;
+    /* ensure consistent spacing calc above photo */
+    margin: 0 0 24px 0;
+    /* exact 24px gap above photo */
+    /* no extra space added by the heading link */
 }
 
-.brand:hover { color: #1b1a48; }
-.brand:focus-visible { outline: 2px dashed rgba(44, 42, 100, 0.5); outline-offset: 4px; }
+.brand:hover {
+    color: #1b1a48;
+}
 
-.email {
-    margin-left: 0;
-    margin-top: 12px;
-    font-size: clamp(14px, 1.3vw, 18px);
-    letter-spacing: 0.02em;
+.brand:focus-visible {
+    outline: 2px dashed rgba(44, 42, 100, 0.5);
+    outline-offset: 4px;
+}
+
+/* email removed per request */
+
+.contact-btn {
+    /* match work-card look */
+    margin-top: 15px;
+    display: inline-block;
+    padding: 2px 0;
+    border: none;
     color: var(--text-deep);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    background: transparent;
+    transition: color 160ms ease, transform 120ms ease, text-decoration-color 160ms ease;
 }
 
-.work-grid {
-    min-height: 100vh;
+.contact-btn:hover {
+    color: #0a0926;
+    font-weight: 700;
+}
+
+.contact-btn:active {
+    transform: translateY(1px);
+}
+
+.profile {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 80px 16px 40px;
-    /* leave room for fixed header */
-    transform: translateY(-3vh);
-    /* slightly higher than center */
+    /* center brand over photo */
+    width: clamp(160px, 22vw, 260px);
+    margin-top: 24px;
+    /* add more space below header brand */
+}
+
+.headshot {
+    margin-top: 0;
+    /* controlled by brand margin-bottom */
+    margin-bottom: 24px;
+    /* exact gap above description */
+    width: clamp(160px, 22vw, 260px);
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.bio {
+    margin-top: 0;
+    /* spacing handled by headshot margin-bottom */
+    color: var(--text-deep);
+    text-align: center;
+    max-width: 100%;
+    hyphens: auto;
+}
+
+.bio p {
+    margin: 0 0 10px;
+    line-height: 1.5;
+}
+
+.back-home {
+    margin-top: 18px;
+    display: inline-block;
+}
+
+.work-grid {
+    min-height: 140vh;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    /* ensure first row items sit at the top */
+    justify-items: center;
+    padding: 0 16px 320px 22px;
+    /* remove top padding to bring content up */
+    transform: none;
+    /* no offset */
     gap: 24px;
-    /* explicit vertical spacing */
+}
+
+/* Keep middle button column fixed in the viewport while the page scrolls */
+#navButtons {
+    position: fixed;
+    top: 0;
+    /* exact position will be set by JS to align with photo */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.project-card {
+    display: block;
+    text-decoration: none;
+}
+
+.project-thumb {
+    width: min(560px, 80vw);
+    height: auto;
+    /* keep image aspect ratio */
+    border-radius: 12px;
+    border: 1px solid rgba(44, 42, 100, 0.6);
+    display: block;
+    background: rgba(44, 42, 100, 0.06);
+    transition: transform 140ms ease, border-color 160ms ease;
+}
+
+.project-card:hover .project-thumb {
+    transform: translateY(-2px);
+    border-color: rgba(44, 42, 100, 0.9);
+}
+
+.project-label {
+    display: block;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-deep);
+    text-align: center;
+}
+
+.project-card .project-caption {
+    display: block;
+    margin-top: 8px;
+    max-width: min(560px, 80vw);
+    text-align: center;
+    color: var(--text-deep);
+    letter-spacing: 0.02em;
+}
+
+.project-card {
+    display: block;
+    text-decoration: none;
+}
+
+.project-preview {
+    width: min(560px, 80vw);
+    padding: 16px 18px;
+    border: 1px solid rgba(44, 42, 100, 0.6);
+    border-radius: 10px;
+    background: rgba(44, 42, 100, 0.06);
+    color: var(--text-deep);
+    text-align: left;
+    transition: background-color 160ms ease, border-color 160ms ease, transform 120ms ease;
+}
+
+.project-preview:hover {
+    background: rgba(44, 42, 100, 0.12);
+    border-color: rgba(44, 42, 100, 0.9);
+}
+
+.project-title {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+}
+
+.project-sub {
+    letter-spacing: 0.02em;
+    opacity: 0.9;
 }
 
 .work-card {
@@ -76,6 +217,8 @@ body {
     background: transparent;
     transition: color 160ms ease, transform 120ms ease, text-decoration-color 160ms ease;
 }
+
+/* icon removed for Essays */
 
 .work-card:hover {
     color: #0a0926;
