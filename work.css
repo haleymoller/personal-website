@@ -234,3 +234,51 @@ body {
     outline-offset: 3px;
     text-decoration: none;
 }
+
+/* Social icon under Contact Me */
+.social-icon {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--text-deep);
+}
+.social-icon:hover { color: #0a0926; }
+.social-icon svg { width: 24px; height: 24px; fill: currentColor; vertical-align: middle; }
+.social-icon + .social-icon { margin-left: 10px; }
+.socials { display: inline-flex; gap: 10px; align-items: center; }
+
+/* ========== Mobile adjustments ========== */
+@media (max-width: 640px) {
+    .profile {
+        width: min(92vw, 420px);
+        margin: 12px auto 0;
+        align-items: center;
+        text-align: center;
+    }
+    .brand { font-size: clamp(22px, 8vw, 40px); margin: 0 0 20px 0; }
+    .headshot { width: 92vw; height: auto; margin-bottom: 20px; }
+    .bio { max-width: 92vw; margin: 0 auto; line-height: 1.6; }
+    .back-home { margin-top: 20px; }
+
+    .work-grid {
+        display: block;
+        padding: 16px 16px 140px;
+    }
+
+    /* Let the button column scroll with content and sit below the profile */
+    #navButtons {
+        position: static;
+        transform: none;
+        margin: 28px auto 0;
+        gap: 24px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .work-card { font-size: 1rem; padding: 8px 0; }
+
+    /* Projects page cards */
+    .project-thumb { width: 92vw; }
+    .project-card .project-caption { max-width: 92vw; }
+    .social-icon svg { width: 28px; height: 28px; }
+}

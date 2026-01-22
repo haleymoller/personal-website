@@ -6,6 +6,12 @@
     const buttons = document.getElementById('navButtons');
     if (!profile || !photo || !buttons) return;
 
+    // On small screens, let CSS handle layout (stacked flow)
+    if (window.innerWidth <= 640) {
+      buttons.style.top = '';
+      return;
+    }
+
     const profileRect = profile.getBoundingClientRect();
     const photoRect = photo.getBoundingClientRect();
     // Place the button container so its top aligns with the photo top
@@ -20,6 +26,16 @@
     const contact = document.querySelector('.contact-btn');
     const backHome = document.querySelector('.back-home');
     if (!brand || !photo || !bio) return;
+
+    // On small screens, rely on CSS spacing
+    if (window.innerWidth <= 640) {
+      photo.style.marginTop = '';
+      photo.style.marginBottom = '';
+      bio.style.marginTop = '';
+      if (contact) contact.style.marginTop = '';
+      if (backHome) backHome.style.marginTop = '';
+      return;
+    }
 
     // Reset to base margins first
     photo.style.marginTop = '0px';
