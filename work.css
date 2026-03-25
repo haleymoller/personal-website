@@ -270,6 +270,13 @@ body {
     border-radius: 10px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.10);
 }
+.photo-feed figcaption {
+    margin-top: 8px;
+    text-align: center;
+    color: var(--text-deep);
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+}
 
 /* Social icon under Contact Me */
 .social-icon {

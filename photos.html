@@ -28,19 +28,11 @@
     // If your environment doesn't pick these up, we'll fall back to photos.js.
     // Put files here on your computer:
     //   /Users/haleymoller/Desktop/Website 2025/photos/
-    let allPhotos = [];
-    try {
-      const g1 = import.meta.glob('/photos/*.{jpg,jpeg,png,webp,gif}', { as: 'url', eager: true });
-      const g2 = import.meta.glob('./photos/*.{jpg,jpeg,png,webp,gif}', { as: 'url', eager: true });
-      const g3 = import.meta.glob('photos/*.{jpg,jpeg,png,webp,gif}', { as: 'url', eager: true });
-      allPhotos = Object.values({ ...g1, ...g2, ...g3 });
-    } catch (_) {
-      allPhotos = [];
-    }
-
-    // Sort using numeric-aware ordering so photo1 < photo2 < ... < photo10
+    // Simpler, reliable source of file list: photos.js
+    import { PHOTOS, CAPTIONS as RAW_CAPTIONS } from './photos.js';
+    // Clone and sort numerically so photo1 < photo2 < ... < photo10
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
-    allPhotos = allPhotos.sort((a, b) => collator.compare(a, b));
+    let allPhotos = Array.isArray(PHOTOS) ? [...PHOTOS].sort((a, b) => collator.compare(a, b)) : [];
 
     // Fallback: load list from photos.js if glob returned nothing
     if (!allPhotos.length) {
@@ -59,32 +51,144 @@
     let nextIndex = 0;
     const BATCH_SIZE = 1; // load one at a time
 
+    const CAPTIONS = {};
+    if (RAW_CAPTIONS && typeof RAW_CAPTIONS === 'object') {
+      for (const [k, v] of Object.entries(RAW_CAPTIONS)) {
+        CAPTIONS[String(k).toLowerCase()] = v;
+      }
+    }
+
+    function getCaption(url) {
+      // strip query and path, lowercase filename
+      const noQuery = url.split('?')[0];
+      const file = noQuery.substring(noQuery.lastIndexOf('/') + 1).toLowerCase();
+      return CAPTIONS[file] || "";
+    }
+
+    function candidateVariants(src) {
+      // If src already includes an extension, try that first, then swap jpg/jpeg
+      const m = src.match(/^(.*)\.(jpg|jpeg|png|webp|gif)(\?.*)?$/i);
+      if (m) {
+        const base = m[1], ext = m[2].toLowerCase(), q = m[3] || '';
+        const swap = ext === 'jpg' ? 'jpeg' : ext === 'jpeg' ? 'jpg' : ext;
+        const variants = [ext, swap];
+        // add uppercase versions
+        variants.push(ext.toUpperCase(), swap.toUpperCase());
+        const order = [...new Set(variants)];
+        return order.map(e => `${base}.${e}${q}`);
+      }
+      return [src];
+    }
+
+    function loadWithFallback(src) {
+      return new Promise(resolve => {
+        const variants = candidateVariants(src);
+        let i = 0;
+        const img = new Image();
+        const tryNext = () => {
+          if (i >= variants.length) return resolve(null);
+          img.src = variants[i++];
+        };
+        img.onload = () => resolve(img.src);
+        img.onerror = tryNext;
+        tryNext();
+      });
+    }
+
     function appendNextBatch() {
       let added = 0;
       while (added < BATCH_SIZE && nextIndex < allPhotos.length) {
         const src = allPhotos[nextIndex++];
-        const fig = document.createElement('figure');
-        const img = document.createElement('img');
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.src = src;
-        img.alt = '';
-        fig.appendChild(img);
-        feed.appendChild(fig);
-        added++;
+        // Try loading with jpg/jpeg fallback
+        loadWithFallback(src).then(okSrc => {
+          if (!okSrc) return; // skip if not found
+          const fig = document.createElement('figure');
+          const img = document.createElement('img');
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.src = okSrc;
+          img.alt = '';
+          fig.appendChild(img);
+          const cap = getCaption(okSrc);
+          if (cap) {
+            const fc = document.createElement('figcaption');
+            fc.textContent = cap;
+            fig.appendChild(fc);
+          }
+          feed.appendChild(fig);
+        });
+        added++; // schedule one
       }
       if (nextIndex >= allPhotos.length) observer.disconnect();
     }
 
     const observer = new IntersectionObserver((entries) => {
       if (entries.some(e => e.isIntersecting)) {
-        appendNextBatch();
+        if (allPhotos.length) {
+          appendNextBatch();
+        } else {
+          appendNextSequential();
+        }
       }
     }, { rootMargin: '300px' });
 
     observer.observe(sentinel);
     // initial load
-    appendNextBatch();
+    if (allPhotos.length) {
+      appendNextBatch();
+    } else {
+      appendNextSequential();
+    }
+
+    // Fallback: sequential loader for names like photo1.jpg, photo2.jpg, ...
+    let seqIndex = 1;
+    let misses = 0;
+    const exts = ['jpg','jpeg','png','webp','gif','JPG','JPEG','PNG','WEBP','GIF'];
+    const MAX_MISSES = 25; // stop after many consecutive misses
+
+    function tryLoad(url) {
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(url);
+        img.onerror = () => resolve(null);
+        img.src = url;
+      });
+    }
+
+    async function appendNextSequential() {
+      if (misses >= MAX_MISSES) {
+        observer.disconnect();
+        return;
+      }
+      const base = 'photos/photo' + String(seqIndex);
+      let found = null;
+      for (const ext of exts) {
+        const url = `${base}.${ext}`;
+        // cache-bust once to avoid stale loads
+        const ok = await tryLoad(`${url}?v=1`);
+        if (ok) { found = url; break; }
+      }
+      seqIndex++;
+      if (found) {
+        misses = 0;
+        const fig = document.createElement('figure');
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.src = found;
+        img.alt = '';
+        fig.appendChild(img);
+        const cap = getCaption(found);
+        if (cap) {
+          const fc = document.createElement('figcaption');
+          fc.textContent = cap;
+          fig.appendChild(fc);
+        }
+        feed.appendChild(fig);
+      } else {
+        misses++;
+      }
+    }
   </script>
 </body>
 </html>
