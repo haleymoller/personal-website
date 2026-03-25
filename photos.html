@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photographs — Haley Moller</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="work.css" />
+</head>
+<body>
+  <main class="work-grid" style="grid-template-columns: 1fr; gap: 24px;">
+    <div class="profile" style="justify-self: center; align-self: start;">
+      <a class="brand" href="index.html">Haley<br>Moller</a>
+      <div class="bio" style="max-width: 72ch; text-align: center;">
+        <p>Selected photographs.</p>
+      </div>
+      <a class="work-card back-home" href="index.html">Back Home</a>
+    </div>
+
+    <section class="photo-feed" style="grid-column: 1;"></section>
+    <div id="photo-sentinel" style="height: 1px;"></div>
+  </main>
+
+  <script type="module">
+    // Try to auto-include any image placed in /photos using Vite's import.meta.glob.
+    // If your environment doesn't pick these up, we'll fall back to photos.js.
+    // Put files here on your computer:
+    //   /Users/haleymoller/Desktop/Website 2025/photos/
+    let allPhotos = [];
+    try {
+      const g1 = import.meta.glob('/photos/*.{jpg,jpeg,png,webp,gif}', { as: 'url', eager: true });
+      const g2 = import.meta.glob('./photos/*.{jpg,jpeg,png,webp,gif}', { as: 'url', eager: true });
+      const g3 = import.meta.glob('photos/*.{jpg,jpeg,png,webp,gif}', { as: 'url', eager: true });
+      allPhotos = Object.values({ ...g1, ...g2, ...g3 });
+    } catch (_) {
+      allPhotos = [];
+    }
+
+    // Sort using numeric-aware ordering so photo1 < photo2 < ... < photo10
+    const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+    allPhotos = allPhotos.sort((a, b) => collator.compare(a, b));
+
+    // Fallback: load list from photos.js if glob returned nothing
+    if (!allPhotos.length) {
+      try {
+        const mod = await import('./photos.js');
+        if (mod && Array.isArray(mod.PHOTOS)) {
+          allPhotos = mod.PHOTOS;
+        }
+      } catch (_) {
+        // ignore
+      }
+    }
+
+    const feed = document.querySelector('.photo-feed');
+    const sentinel = document.getElementById('photo-sentinel');
+    let nextIndex = 0;
+    const BATCH_SIZE = 1; // load one at a time
+
+    function appendNextBatch() {
+      let added = 0;
+      while (added < BATCH_SIZE && nextIndex < allPhotos.length) {
+        const src = allPhotos[nextIndex++];
+        const fig = document.createElement('figure');
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.src = src;
+        img.alt = '';
+        fig.appendChild(img);
+        feed.appendChild(fig);
+        added++;
+      }
+      if (nextIndex >= allPhotos.length) observer.disconnect();
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) {
+        appendNextBatch();
+      }
+    }, { rootMargin: '300px' });
+
+    observer.observe(sentinel);
+    // initial load
+    appendNextBatch();
+  </script>
+</body>
+</html>
