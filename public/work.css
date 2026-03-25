@@ -262,7 +262,12 @@ body {
     flex-direction: column;
     gap: 18px;
 }
-.photo-feed figure { margin: 0; }
+.photo-feed figure { 
+    margin: 0; 
+    content-visibility: auto;
+    /* Reserve space to reduce layout shifts before the image loads */
+    contain-intrinsic-size: 600px 400px;
+}
 .photo-feed img {
     width: 100%;
     height: auto;
