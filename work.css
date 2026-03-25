@@ -128,10 +128,9 @@ body {
 /* Keep middle button column fixed in the viewport while the page scrolls */
 #navButtons {
     position: fixed;
-    top: 0;
-    /* exact position will be set by JS to align with photo */
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     z-index: 5;
 }
 

@@ -6,17 +6,9 @@
     const buttons = document.getElementById('navButtons');
     if (!profile || !photo || !buttons) return;
 
-    // On small screens, let CSS handle layout (stacked flow)
-    if (window.innerWidth <= 640) {
-      buttons.style.top = '';
-      return;
-    }
-
-    const profileRect = profile.getBoundingClientRect();
-    const photoRect = photo.getBoundingClientRect();
-    // Place the button container so its top aligns with the photo top
-    const newTop = Math.max(0, window.scrollY + photoRect.top);
-    buttons.style.top = `${newTop}px`;
+    // Let CSS handle centering on desktop; clear any inline top set previously.
+    buttons.style.top = '';
+    // On mobile, CSS switches to static flow in media query.
   }
 
   function balancePhotoGaps() {
