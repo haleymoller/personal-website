@@ -7,16 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="work.css" />
+  <link rel="stylesheet" href="/work.css" />
 </head>
 <body>
   <main class="work-grid" style="grid-template-columns: 1fr; gap: 24px;">
     <div class="profile" style="justify-self: center; align-self: start;">
-      <a class="brand" href="index.html">Haley<br>Moller</a>
+      <a class="brand" href="/">Haley<br>Moller</a>
       <div class="bio" style="max-width: 72ch; text-align: center;">
         <p>Selected photographs.</p>
       </div>
-      <a class="work-card back-home" href="index.html">Back Home</a>
+      <a class="work-card back-home" href="/">Back Home</a>
     </div>
 
     <section class="photo-feed" style="grid-column: 1;"></section>
@@ -29,7 +29,7 @@
     // Put files here on your computer:
     //   /Users/haleymoller/Desktop/Website 2025/photos/
     // Simpler, reliable source of file list: photos.js
-    import { PHOTOS, CAPTIONS as RAW_CAPTIONS } from './photos.js';
+    import { PHOTOS, CAPTIONS as RAW_CAPTIONS } from '/photos.js';
     // Clone and sort numerically so photo1 < photo2 < ... < photo10
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
     let allPhotos = Array.isArray(PHOTOS) ? [...PHOTOS].sort((a, b) => collator.compare(a, b)) : [];
@@ -80,9 +80,13 @@
       return [src];
     }
 
+    function toRootPath(p) {
+      return p && p.startsWith('/') ? p : `/${p || ''}`;
+    }
+
     function loadWithFallback(src) {
       return new Promise(resolve => {
-        const variants = candidateVariants(src);
+        const variants = candidateVariants(toRootPath(src));
         let i = 0;
         const img = new Image();
         const tryNext = () => {
@@ -160,7 +164,7 @@
         observer.disconnect();
         return;
       }
-      const base = 'photos/photo' + String(seqIndex);
+      const base = '/photos/photo' + String(seqIndex);
       let found = null;
       for (const ext of exts) {
         const url = `${base}.${ext}`;
