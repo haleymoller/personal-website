@@ -24,6 +24,7 @@
             </div>
             <a class="work-card contact-btn" href="mailto:haleymoller@gmail.com?subject=Hello%20from%20your%20website"
                 aria-label="Contact Haley via email">Contact Me</a>
+            <button class="work-card resume-btn" id="resume-btn" aria-label="Open resume">Resume 2026</button>
             <div class="socials">
             <a class="social-icon" href="https://www.linkedin.com/in/haleymoller" target="_blank" rel="noopener"
                 aria-label="LinkedIn">
@@ -69,7 +70,28 @@
         </aside>
 
     </main>
+    <!-- Resume modal -->
+    <div id="resume-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Resume">
+        <div class="modal-box">
+            <button class="modal-close" id="resume-close" aria-label="Close resume">&#x2715;</button>
+            <iframe src="/Haley_Moller_Resume_2026.pdf" title="Haley Moller Resume 2026"></iframe>
+            <a class="modal-download" href="/Haley_Moller_Resume_2026.pdf" download>Download PDF</a>
+        </div>
+    </div>
+
     <script src="/work.js"></script>
+    <script>
+        (function () {
+            const btn   = document.getElementById('resume-btn');
+            const modal = document.getElementById('resume-modal');
+            const close = document.getElementById('resume-close');
+
+            btn.addEventListener('click', () => modal.classList.add('open'));
+            close.addEventListener('click', () => modal.classList.remove('open'));
+            modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('open'); });
+        })();
+    </script>
 </body>
 
 </html>
