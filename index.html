@@ -73,9 +73,25 @@
     <!-- Resume modal -->
     <div id="resume-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Resume">
         <div class="modal-box">
-            <button class="modal-close" id="resume-close" aria-label="Close resume">&#x2715;</button>
-            <iframe src="/Haley_Moller_2026.pdf" title="Haley Moller Resume 2026"></iframe>
-            <a class="modal-download" href="/Haley_Moller_2026.pdf" download>Download PDF</a>
+            <header class="modal-header">
+                <span class="modal-title">Haley Moller &mdash; Resume 2026</span>
+                <div class="modal-actions">
+                    <a class="modal-download-btn" href="/Haley_Moller_2026.pdf" download aria-label="Download PDF">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 15V3m0 12-4-4m4 4 4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17"/>
+                        </svg>
+                        Download
+                    </a>
+                    <button class="modal-close" id="resume-close" aria-label="Close resume">&#x2715;</button>
+                </div>
+            </header>
+            <div class="modal-body">
+                <iframe src="/Haley_Moller_2026.pdf" title="Haley Moller Resume 2026"></iframe>
+                <div class="modal-mobile-fallback">
+                    <p>PDF preview isn't available on this device.</p>
+                    <a class="modal-download-btn" href="/Haley_Moller_2026.pdf" download>Download PDF</a>
+                </div>
+            </div>
         </div>
     </div>
 
