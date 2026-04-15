@@ -745,6 +745,56 @@ body {
     opacity: 0.5;
 }
 
+/* ================================================================
+   ESSAY TWEET EMBED
+   ================================================================ */
+.essay-tweet {
+    margin: 0 0 1.6em;
+    padding: 20px 24px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: rgba(44, 42, 100, 0.02);
+}
+
+.essay-tweet-author {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.essay-tweet-handle {
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+.essay-tweet-body {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.7;
+    margin: 0 0 12px;
+}
+
+.essay-tweet-body a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.essay-tweet-body a:hover {
+    text-decoration: underline;
+}
+
+.essay-tweet-meta {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+}
+
 .essay-epigraph {
     margin: 0 0 2.8em 0;
     padding-left: 1.4em;
