@@ -10,6 +10,7 @@ export default defineConfig({
         photos: resolve(__dirname, 'photos.html'),
         essays: resolve(__dirname, 'essays.html'),
         essayAiConvert: resolve(__dirname, 'essay-ai-convert.html'),
+        essayFdaForAi: resolve(__dirname, 'essay-fda-for-ai.html'),
       },
     },
   },
