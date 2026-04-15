@@ -12,6 +12,7 @@ export default defineConfig({
         essayAiConvert: resolve(__dirname, 'essay-ai-convert.html'),
         essayFdaForAi: resolve(__dirname, 'essay-fda-for-ai.html'),
         essayWhoGetsToStudyAi: resolve(__dirname, 'essay-who-gets-to-study-ai.html'),
+        essayNewIdolsSiliconValley: resolve(__dirname, 'essay-new-idols-silicon-valley.html'),
         essayMonomaniaAsProgress: resolve(__dirname, 'essay-monomania-as-progress.html'),
         essayWhyAiCantWriteLiterature: resolve(__dirname, 'essay-why-ai-cant-write-literature.html'),
       },
