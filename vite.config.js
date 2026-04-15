@@ -8,6 +8,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         projects: resolve(__dirname, 'projects.html'),
         photos: resolve(__dirname, 'photos.html'),
+        essayAiConvert: resolve(__dirname, 'essay-ai-convert.html'),
       },
     },
   },

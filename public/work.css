@@ -611,25 +611,115 @@ body {
 }
 
 /* ================================================================
-   ESSAY SECTION (homepage)
+   ESSAY PREVIEW CARD (homepage)
    ================================================================ */
-.essay-section {
+.essay-preview {
     grid-column: 1 / -1;
-    max-width: 660px;
+    display: block;
+    max-width: 560px;
     width: 100%;
-    margin: 60px auto 0;
-    padding: 60px 24px 100px;
+    margin: 56px auto 0;
+    padding: 36px 40px 32px;
     border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    transition: background 200ms ease;
 }
 
-.essay-header {
-    margin-bottom: 2.8em;
+.essay-preview:hover {
+    background: rgba(44, 42, 100, 0.03);
+}
+
+.essay-preview-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.essay-preview-label {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--text-muted);
+}
+
+.essay-preview-date {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+}
+
+.essay-preview-title {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+    color: var(--text);
+    line-height: 1.2;
+    margin: 0 0 0.35em;
+    letter-spacing: -0.01em;
+}
+
+.essay-preview-subtitle {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.92rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text);
+    opacity: 0.7;
+    margin: 0 0 1.1em;
+    line-height: 1.5;
+}
+
+.essay-preview-excerpt {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin: 0 0 1.4em;
+    font-weight: 400;
+}
+
+.essay-preview-read {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text);
+    transition: color 200ms ease;
+}
+
+.essay-preview:hover .essay-preview-read {
+    color: var(--accent);
+}
+
+/* ================================================================
+   ESSAY FULL PAGE
+   ================================================================ */
+.essay-page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 24px 120px;
+}
+
+.essay-nav {
+    margin-bottom: 56px;
+}
+
+.essay-full .essay-header {
+    margin-bottom: 3em;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2em;
 }
 
 .essay-title {
     font-family: 'Lora', 'Hoefler Text', Georgia, serif;
     font-weight: 700;
-    font-size: clamp(1.55rem, 3.2vw, 2.2rem);
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
     color: var(--text);
     line-height: 1.2;
     margin: 0 0 0.45em;
@@ -638,13 +728,13 @@ body {
 
 .essay-subtitle {
     font-family: 'Lora', 'Hoefler Text', Georgia, serif;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-style: italic;
     font-weight: 400;
     color: var(--text);
+    opacity: 0.72;
     margin: 0 0 0.75em;
     line-height: 1.5;
-    opacity: 0.72;
 }
 
 .essay-date {
@@ -667,8 +757,12 @@ body {
 }
 
 @media (max-width: 640px) {
-    .essay-section {
-        padding: 48px 20px 80px;
+    .essay-preview {
+        padding: 28px 20px 24px;
+    }
+
+    .essay-page {
+        padding: 40px 20px 80px;
     }
 
     .essay-body p {
