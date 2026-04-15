@@ -754,6 +754,56 @@ body {
     font-weight: 400;
 }
 
+.essay-body sup {
+    font-size: 0.65em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+.essay-body sup a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 180ms ease;
+}
+
+.essay-body sup a:hover {
+    color: var(--accent);
+}
+
+.essay-footnotes {
+    margin-top: 3.5em;
+    padding-top: 2em;
+    border-top: 1px solid var(--rule);
+}
+
+.essay-footnotes ol {
+    padding-left: 1.4em;
+    margin: 0;
+}
+
+.essay-footnotes li {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 0.75em;
+}
+
+.essay-footnotes li a {
+    color: var(--text-muted);
+    transition: color 180ms ease;
+}
+
+.essay-footnotes li a:hover {
+    color: var(--accent);
+}
+
+.fn-back {
+    margin-left: 0.3em;
+    font-size: 0.85em;
+    text-decoration: none;
+}
+
 @media (max-width: 640px) {
     .essay-preview {
         padding: 28px 20px 24px;
