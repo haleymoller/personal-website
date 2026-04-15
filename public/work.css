@@ -847,6 +847,16 @@ body {
     margin-top: 0.4em;
 }
 
+.essay-body h3.essay-section-heading {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin: 2.4em 0 1em;
+}
+
 .essay-body p {
     font-family: 'Lora', 'Hoefler Text', Georgia, serif;
     font-size: 1.05rem;
