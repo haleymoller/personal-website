@@ -795,6 +795,32 @@ body {
     letter-spacing: 0.02em;
 }
 
+.essay-closing-verse {
+    margin: 2em 0 0;
+    padding-left: 1.4em;
+    border-left: 2px solid var(--rule);
+}
+
+.essay-closing-verse p {
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.93rem;
+    font-style: italic;
+    color: var(--text);
+    opacity: 0.75;
+    line-height: 1.85;
+    margin: 0 0 0.9em;
+}
+
+.essay-closing-verse cite {
+    display: block;
+    font-family: 'Lora', 'Hoefler Text', Georgia, serif;
+    font-size: 0.75rem;
+    font-style: normal;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    margin-top: 0.4em;
+}
+
 .essay-epigraph {
     margin: 0 0 2.8em 0;
     padding-left: 1.4em;
