@@ -12,6 +12,7 @@ export default defineConfig({
         essayAiConvert: resolve(__dirname, 'essay-ai-convert.html'),
         essayFdaForAi: resolve(__dirname, 'essay-fda-for-ai.html'),
         essayWhoGetsToStudyAi: resolve(__dirname, 'essay-who-gets-to-study-ai.html'),
+        essayIsArtStillWorthMaking: resolve(__dirname, 'essay-is-art-still-worth-making.html'),
         essayNarratingTheMachine: resolve(__dirname, 'essay-narrating-the-machine.html'),
         essayCanLlmKnowItself: resolve(__dirname, 'essay-can-llm-know-itself.html'),
         essayHoldingMirrorUpToNature: resolve(__dirname, 'essay-holding-mirror-up-to-nature.html'),
