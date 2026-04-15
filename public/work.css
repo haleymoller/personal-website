@@ -614,11 +614,9 @@ body {
    ESSAY PREVIEW CARD (homepage)
    ================================================================ */
 .essay-preview {
-    grid-column: 1 / -1;
     display: block;
-    max-width: 560px;
-    width: 100%;
-    margin: 56px auto 0;
+    max-width: 520px;
+    width: min(520px, 80vw);
     padding: 36px 40px 32px;
     border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
