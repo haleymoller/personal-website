@@ -9,7 +9,7 @@ export default defineConfig({
         projects: resolve(__dirname, 'projects.html'),
         photos: resolve(__dirname, 'photos.html'),
         essays: resolve(__dirname, 'essays.html'),
-        essayAiConvert: resolve(__dirname, 'essay-ai-convert.html'),
+        essayWhatIsItFor: resolve(__dirname, 'essay-what-is-it-for.html'),
         essayFdaForAi: resolve(__dirname, 'essay-fda-for-ai.html'),
         essayWhoGetsToStudyAi: resolve(__dirname, 'essay-who-gets-to-study-ai.html'),
         essayBlueAndGoldMistake: resolve(__dirname, 'essay-blue-and-gold-mistake.html'),
