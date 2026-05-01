@@ -9,6 +9,7 @@ export default defineConfig({
         projects: resolve(__dirname, 'projects.html'),
         photos: resolve(__dirname, 'photos.html'),
         essays: resolve(__dirname, 'essays.html'),
+        essayThePitchforksAreComingForAi: resolve(__dirname, 'essay-the-pitchforks-are-coming-for-ai.html'),
         essayWhoGetsToEndTheWorld: resolve(__dirname, 'essay-who-gets-to-end-the-world.html'),
         essayCloudLabsAndTheNewSupplyChainForBioterrorism: resolve(__dirname, 'essay-cloud-labs-and-the-new-supply-chain-for-bioterrorism.html'),
         essayWhatIsItFor: resolve(__dirname, 'essay-what-is-it-for.html'),
