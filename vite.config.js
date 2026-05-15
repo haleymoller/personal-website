@@ -8,6 +8,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         projects: resolve(__dirname, 'projects.html'),
         fieldNotesAiCountry: resolve(__dirname, 'field-notes-ai-country.html'),
+        fieldNotesPleaseScanMe: resolve(__dirname, 'field-notes-please-scan-me.html'),
         photos: resolve(__dirname, 'photos.html'),
         essays: resolve(__dirname, 'essays.html'),
         essayTheProfessorWhoCried: resolve(__dirname, 'essay-the-professor-who-cried.html'),

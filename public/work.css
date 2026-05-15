@@ -221,23 +221,9 @@ body {
     transition: color 220ms ease;
 }
 
-.work-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 100%;
-    height: 1px;
-    background: currentColor;
-    transition: right 280ms ease;
-}
-
 .work-card:hover {
     color: var(--accent);
-}
-
-.work-card:hover::after {
-    right: 0;
+    font-weight: 700;
 }
 
 .work-card:active { transform: translateY(1px); }
