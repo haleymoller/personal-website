@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         projects: resolve(__dirname, 'projects.html'),
+        fieldNotesAiCountry: resolve(__dirname, 'field-notes-ai-country.html'),
         photos: resolve(__dirname, 'photos.html'),
         essays: resolve(__dirname, 'essays.html'),
         essayTheProfessorWhoCried: resolve(__dirname, 'essay-the-professor-who-cried.html'),
