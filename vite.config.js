@@ -11,6 +11,7 @@ export default defineConfig({
         fieldNotesPleaseScanMe: resolve(__dirname, 'field-notes-please-scan-me.html'),
         photos: resolve(__dirname, 'photos.html'),
         essays: resolve(__dirname, 'essays.html'),
+        essayAsGoodAsReal: resolve(__dirname, 'essay-as-good-as-real.html'),
         essayTheProfessorWhoCried: resolve(__dirname, 'essay-the-professor-who-cried.html'),
         essayUbiIsNotEnough: resolve(__dirname, 'essay-ubi-is-not-enough.html'),
         essayWhatAiExposesAboutCapitalism: resolve(__dirname, 'essay-what-ai-exposes-about-capitalism.html'),
