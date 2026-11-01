@@ -3,8 +3,6 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/projects", "destination": "/projects.html" },
-    { "source": "/photos", "destination": "/photos.html" },
-    { "source": "/photographs", "destination": "/photos.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
